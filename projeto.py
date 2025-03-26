@@ -28,6 +28,19 @@ def jogar_adivinhacao():
     if tentativas_restantes == 0:
         print(f"\nVocê não conseguiu adivinhar o número. O número secreto era {numero_secreto}. Melhor sorte na próxima!")
 
+# Função para jogar novamente
+def jogar_novamente():
+    while True:
+        resposta = input("\nVocê quer jogar novamente? (s/n): ").lower()
+        if resposta == 's':
+            jogar_adivinhacao()
+        elif resposta == 'n':
+            print("Obrigado por jogar! Até a próxima.")
+            break
+        else:
+            print("Por favor, responda com 's' para sim ou 'n' para não.")
+
 # Chama a função para jogar
 if __name__ == "__main__":
     jogar_adivinhacao()
+    jogar_novamente()
