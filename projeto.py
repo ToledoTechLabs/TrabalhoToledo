@@ -1,40 +1,33 @@
 import random
 
-def jogar():
-    print("Bem-vindo ao jogo de Adivinhação!")
-    
-    # Gerar um número aleatório entre 1 e 100
+# Função que gera o número aleatório
+def jogar_adivinhacao():
     numero_secreto = random.randint(1, 100)
-    tentativas = 0
-    acerto = False
+    tentativas_restantes = 5  # Limite de tentativas
+    print("Bem-vindo ao Jogo da Adivinhação!")
+    print("Tente adivinhar o número entre 1 e 100.")
+    print(f"Você tem {tentativas_restantes} tentativas para acertar o número.")
 
-    while not acerto:
-        # Solicitar ao jogador que insira um palpite
+    while tentativas_restantes > 0:
         try:
-            palpite = int(input("Digite um número entre 1 e 100: "))
+            palpite = int(input(f"\nVocê tem {tentativas_restantes} tentativas restantes. Qual é o seu palpite? "))
         except ValueError:
             print("Por favor, insira um número válido.")
             continue
 
-        # Contabilizar as tentativas
-        tentativas += 1
-
-        # Verificar se o palpite está correto
         if palpite < numero_secreto:
-            print("O número é maior! Tente novamente.")
+            print("O número é maior. Tente novamente!")
         elif palpite > numero_secreto:
-            print("O número é menor! Tente novamente.")
+            print("O número é menor. Tente novamente!")
         else:
-            acerto = True
-            print(f"Parabéns! Você acertou o número {numero_secreto} em {tentativas} tentativas.")
-            jogar_novamente()
+            print(f"Parabéns! Você acertou o número {numero_secreto}!")
+            break
 
-def jogar_novamente():
-    resposta = input("Gostaria de jogar novamente? (s/n): ").strip().lower()
-    if resposta == 's':
-        jogar()
-    else:
-        print("Obrigado por jogar!")
+        tentativas_restantes -= 1
 
-# Iniciar o jogo
-jogar()
+    if tentativas_restantes == 0:
+        print(f"\nVocê não conseguiu adivinhar o número. O número secreto era {numero_secreto}. Melhor sorte na próxima!")
+
+# Chama a função para jogar
+if __name__ == "__main__":
+    jogar_adivinhacao()
